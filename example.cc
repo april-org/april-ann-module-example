@@ -15,6 +15,8 @@ int get(lua_State *L) {
   SharedPtr<MatrixFloat> m3 = new MatrixFloat(2, 10, 10);
   matGemm(m3.get(), CblasNoTrans, CblasNoTrans,
           1.0f, m1.get(), m2.get(), 0.0f);
+  // using LuaTable you can push APRIL-ANN objects in Lua stack (be careful, not
+  // all objects can be pushed)
   LuaTable::pushInto(L, m3.get());
   return 1;
 }
